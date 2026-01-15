@@ -61,6 +61,7 @@ export default function Page() {
               rel="noopener noreferrer"
               color="fg.muted"
               _hover={{ color: 'fg' }}
+              _focus={{ outline: 'none' }}
               transition="color 0.2s"
             >
               {social.icon}
