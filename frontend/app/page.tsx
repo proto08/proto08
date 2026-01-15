@@ -1,6 +1,15 @@
 'use client'
 
-import { Box, Flex, VStack, Avatar, HStack, Link, Text, Heading } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  VStack,
+  Avatar,
+  HStack,
+  Link,
+  Text,
+  Heading,
+} from '@chakra-ui/react'
 import {
   LuGithub,
   LuTwitter,

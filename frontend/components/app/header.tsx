@@ -96,7 +96,6 @@ export function Header() {
   )
 }
 
-
 function AvatarButton() {
   return (
     <Menu.Root positioning={{ placement: 'bottom-end' }}>

@@ -2,7 +2,6 @@ import { Container } from '@chakra-ui/react'
 import { Header } from './header'
 
 export function Layouts({ children }: { children: React.ReactNode }) {
-  
   return (
     <>
       <Header />
