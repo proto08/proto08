@@ -60,18 +60,6 @@ export function Header() {
     >
       <Container maxW="container.xl">
         <Flex align="center" justify="space-between" h="12">
-          <HStack gap="4" flex="1">
-            <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <Heading
-                size="md"
-                fontWeight="bold"
-                letterSpacing="tighter"
-                cursor="pointer"
-              >
-                Asynch
-              </Heading>
-            </Link>
-          </HStack>
           <HStack gap="3" flex="1" justify="flex-end">
             <HStack gap="1">
               <ColorModeToggle />

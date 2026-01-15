@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Asynch',
-  description: 'Share yout technology',
+  title: 'bio',
+  description: 'bio',
 }
 
 export default function RootLayout({

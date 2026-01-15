@@ -1,22 +1,7 @@
 'use client'
 
-import {
-  Box,
-  Flex,
-  VStack,
-  Avatar,
-  HStack,
-  Link,
-  Text,
-  Heading,
-} from '@chakra-ui/react'
-import {
-  LuGithub,
-  LuTwitter,
-  LuInstagram,
-  LuLinkedin,
-  LuSend,
-} from 'react-icons/lu'
+import { Flex, VStack, Avatar, HStack, Link, Heading } from '@chakra-ui/react'
+import { LuGithub, LuTwitter, LuSend } from 'react-icons/lu'
 
 const SOCIAL_LINKS = [
   {
