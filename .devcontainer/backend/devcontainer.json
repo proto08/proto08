@@ -1,0 +1,29 @@
+{
+    "name": "asynch-backend",
+    "dockerComposeFile": [
+      "../../docker-compose.devcontainer.yml",
+      "../../docker-compose.yml"
+    ],
+    "service": "backend",
+    "workspaceFolder": "/repo/backend",
+    "customizations": {
+      "vscode": {
+        "extensions": ["ms-python.python", "charliermarsh.ruff"],
+        "settings": {
+          "python.defaultInterpreterPath": "/repo/backend/.venv/bin/python",
+          "[python]": {
+            "editor.codeActionsOnSave": {
+              "source.fixAll": "explicit",
+              "source.organizeImports": "explicit"
+            },
+            "editor.defaultFormatter": "charliermarsh.ruff",
+            "editor.formatOnSave": true,
+            "editor.formatOnType": true
+          }
+        }
+      }
+    },
+    "forwardPorts": [8000],
+    "remoteUser": "root",
+    "shutdownAction": "stopCompose"
+}
