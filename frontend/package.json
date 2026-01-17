@@ -27,6 +27,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.2",
+    "orval": "^8.0.1",
     "typescript": "^5"
   },
   "ignoreScripts": [
@@ -34,6 +35,7 @@
     "unrs-resolver"
   ],
   "trustedDependencies": [
+    "esbuild",
     "sharp",
     "unrs-resolver"
   ]
