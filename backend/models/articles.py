@@ -1,30 +1,36 @@
-from datetime import datetime, timezone
+from sqlalchemy import Column, ForeignKey, Integer, String, Table, Text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from sqlalchemy import Column, DateTime, func
-from sqlalchemy.orm import declarative_base
+from models import Base, DeletableModel, UUIDModel
+from models.users import User
 
-Base = declarative_base()
+article_category = Table(
+    "article_category",
+    Base.metadata,
+    Column("article_id", Integer, ForeignKey("articles.id"), primary_key=True),
+    Column("category_id", Integer, ForeignKey("categories.id"), primary_key=True),
+)
 
 
-class BaseModel(Base):
-    __abstract__ = True
+class Article(DeletableModel, UUIDModel):
+    __tablename__ = "articles"
 
-    created_at = Column(
-        DateTime,
-        default=lambda: datetime.now(timezone.utc),
-        server_default=func.now(),
-        nullable=False,
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    title: Mapped[str] = mapped_column(String(255), nullable=False)
+    description: Mapped[str] = mapped_column(Text(), nullable=False)
+    body: Mapped[str] = mapped_column(Text(), nullable=False)
+    author_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id"))
+    author: Mapped[User] = relationship(back_populates="articles")
+    categories: Mapped[list["Category"]] = relationship(
+        secondary=article_category, back_populates="articles"
     )
-    updated_at = Column(
-        DateTime,
-        default=lambda: datetime.now(timezone.utc),
-        onupdate=lambda: datetime.now(timezone.utc),
-        server_default=func.now(),
-        nullable=False,
+
+
+class Category(DeletableModel, UUIDModel):
+    __tablename__ = "categories"
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String(255))
+    articles: Mapped[list["Article"]] = relationship(
+        secondary=article_category, back_populates="categories"
     )
-
-
-class DeletableModel(BaseModel):
-    __abstract__ = True
-
-    deleted_at = Column(DateTime, nullable=True)
