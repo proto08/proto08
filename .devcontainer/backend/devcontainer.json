@@ -1,5 +1,5 @@
 {
-    "name": "asynch-backend",
+    "name": "backend",
     "dockerComposeFile": [
       "../../docker-compose.devcontainer.yml",
       "../../docker-compose.yml"
