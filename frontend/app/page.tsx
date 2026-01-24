@@ -36,7 +36,7 @@ export default function Page() {
         <Avatar.Fallback fontSize="7xl">Y</Avatar.Fallback>
       </Avatar.Root>
       <VStack align="flex-start" gap="6">
-        <Heading size="2xl">Hello, I'm test</Heading>
+        <Heading size="2xl">Hello, I&apos;m test</Heading>
         <HStack gap="6">
           {SOCIAL_LINKS.map((social) => (
             <Link
