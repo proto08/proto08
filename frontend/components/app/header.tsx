@@ -49,20 +49,16 @@ const MENU_ITEMS = [
 
 export function Header() {
   return (
-    <Box
-      as="header"
-      borderBottomWidth="1px"
-      py="2"
-      bg="bg.panel"
-      position="sticky"
-      top="0"
-      zIndex="sticky"
-    >
-      <Container maxW="container.xl">
+    <Box as="header" py="10" position="sticky" top="0" zIndex="sticky">
+      <Container maxW="1100px">
         <Flex align="center" justify="space-between" h="12">
+          <HStack justify="flex-start">
+            <Link href="/">
+              <Text fontWeight="bold">AnonShare</Text>
+            </Link>
+          </HStack>
           <HStack gap="3" flex="1" justify="flex-end">
             <HStack gap="1">
-              <ColorModeToggle />
               <LinkButton
                 href="/search"
                 variant="ghost"
@@ -71,12 +67,13 @@ export function Header() {
               >
                 <LuSearch size="16" />
               </LinkButton>
+              <ColorModeToggle />
             </HStack>
-            <Separator orientation="vertical" h="6" />
+            {/* <Separator orientation="vertical" h="6" />
             <AvatarButton />
             <LinkButton href="/articles/new" size="sm" variant="solid">
               執筆する
-            </LinkButton>
+            </LinkButton> */}
           </HStack>
         </Flex>
       </Container>

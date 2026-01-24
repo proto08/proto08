@@ -5,7 +5,7 @@ export function Layouts({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <Container maxW="container.xl" py="8">
+      <Container maxW="1100px" py="8">
         {children}
       </Container>
     </>
