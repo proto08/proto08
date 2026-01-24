@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/devcontainers/javascript-node:22-bookworm
+
+RUN curl -fsSL https://bun.sh/install | bash
+ENV PATH="/root/.bun/bin:${PATH}"
+
+WORKDIR /repo/frontend
+COPY . /repo
+
+
+CMD ["bun", "run", "dev"]
