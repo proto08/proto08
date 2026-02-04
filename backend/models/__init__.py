@@ -34,4 +34,4 @@ class DeletableModel(BaseModel):
 class UUIDModel:
     __abstract__ = True
 
-    uuud = Column(UUID(as_uuid=True), default=uuid.uuid4)
+    uuid = Column(UUID(as_uuid=True), default=uuid.uuid4)

@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from settings import MYSQL_DATABASE, MYSQL_HOST_NAME, MYSQL_PASSWORD, MYSQL_USER
 
 url = URL(
-    drivername="musql+mysqldb",
+    drivername="mysql+mysqldb",
     username=MYSQL_USER,
     password=MYSQL_PASSWORD,
     host=MYSQL_HOST_NAME,
