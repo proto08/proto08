@@ -3,5 +3,5 @@ from entities import BaseDto
 
 
 class EmailLoginDto(BaseDto):
-    mail: EmailStr = Field(description="mail address")
+    email: EmailStr = Field(description="email address")
     password: str = Field(description="password")
