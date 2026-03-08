@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Badge } from '@/components/ui/badge'
 import type { ArticleMeta } from '@/types/article'
 
 interface ArticleCardProps {
@@ -14,21 +13,18 @@ export function ArticleCard({ article }: ArticleCardProps) {
   return (
     <Link
       href={`/articles/${article.slug}`}
-      className="group block rounded-xl border border-border bg-card p-6 transition-all hover:border-primary hover:shadow-md"
+      className="group -mx-4 block rounded-lg px-4 py-5 transition-colors hover:bg-muted/40"
     >
-      <div className="mb-3 flex items-center gap-2">
-        <Badge variant="secondary">{article.category}</Badge>
-        <span className="text-xs text-muted-foreground">
-          {article.readingTime}
-        </span>
+      <div className="mb-1.5 flex items-center justify-between">
+        <span className="text-xs text-muted-foreground">{article.category}</span>
+        <time className="text-xs text-muted-foreground">{formattedDate}</time>
       </div>
-      <h2 className="mb-2 text-xl font-semibold transition-colors group-hover:text-primary">
+      <h2 className="mb-1 text-lg font-semibold transition-colors group-hover:text-primary">
         {article.title}
       </h2>
-      <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
+      <p className="line-clamp-2 text-sm text-muted-foreground">
         {article.description}
       </p>
-      <time className="text-xs text-muted-foreground">{formattedDate}</time>
     </Link>
   )
 }
