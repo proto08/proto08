@@ -17,6 +17,7 @@ No test suite is configured.
 Personal bio/portfolio site built with Next.js (App Router), React 19, Tailwind CSS v4, and shadcn/ui.
 
 **Key structure:**
+
 - `app/` — Next.js App Router pages and root layout. Layout wraps all pages with `Header`, `Footer`, `ThemeProvider`, and Vercel Analytics.
 - `components/app/` — App-specific components (`header.tsx`, `footer.tsx`). Header exports `scrollToSection` utility used by page components.
 - `components/ui/` — shadcn/ui components (shadcn style: `new-york`, icon library: `lucide`). Add new components via `bunx shadcn@latest add <component>`.
@@ -31,6 +32,7 @@ Personal bio/portfolio site built with Next.js (App Router), React 19, Tailwind 
 ## Code Style
 
 Prettier is configured (enforced via CI on push):
+
 - No semicolons, single quotes, 2-space indent, trailing commas (ES5)
 
 Components that use browser APIs or hooks must have `'use client'` at the top.
