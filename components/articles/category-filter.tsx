@@ -11,14 +11,14 @@ export function CategoryFilter({
   activeCategory,
 }: CategoryFilterProps) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-5">
       <Link
         href="/articles"
         className={cn(
-          'rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
+          'text-sm transition-colors',
           !activeCategory
-            ? 'bg-primary text-primary-foreground'
-            : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+            ? 'font-medium text-foreground underline underline-offset-4'
+            : 'text-muted-foreground hover:text-foreground'
         )}
       >
         すべて
@@ -28,10 +28,10 @@ export function CategoryFilter({
           key={category}
           href={`/articles?category=${category}`}
           className={cn(
-            'rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
+            'text-sm transition-colors',
             activeCategory === category
-              ? 'bg-primary text-primary-foreground'
-              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+              ? 'font-medium text-foreground underline underline-offset-4'
+              : 'text-muted-foreground hover:text-foreground'
           )}
         >
           {category}
