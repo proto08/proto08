@@ -9,14 +9,11 @@ export default function Header() {
     <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
       <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-full px-6 py-3">
         <div className="flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => scrollToSection('hero')}
-            className="rounded-full"
-          >
-            Home
-          </Button>
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="rounded-full">
+              Home
+            </Button>
+          </Link>
           <Link href="/articles" className="hover:text-primary">
             <Button variant="ghost" size="sm" className="rounded-full">
               Blogs
