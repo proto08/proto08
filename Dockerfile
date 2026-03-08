@@ -24,5 +24,10 @@ COPY --from=build /app/package.json /app/package.json
 COPY --from=build /app/next.config.ts /app/next.config.ts
 COPY --from=build /app/node_modules /app/node_modules
 
+# Create non-root user
+RUN groupadd -r nodejs && useradd -r -g nodejs nodejs
+RUN chown -R nodejs:nodejs /app
+USER nodejs
+
 EXPOSE 3000
 CMD ["bun", "run", "start", "--", "-H", "0.0.0.0", "-p", "3000"]
