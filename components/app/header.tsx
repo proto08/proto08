@@ -17,7 +17,7 @@ export default function Header() {
           >
             Home
           </Button>
-          <Link href="test" className="hover:text-primary">
+          <Link href="/articles" className="hover:text-primary">
             <Button variant="ghost" size="sm" className="rounded-full">
               Blogs
             </Button>
