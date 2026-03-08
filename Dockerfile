@@ -1,30 +1,28 @@
 FROM oven/bun:1 AS deps
 
 WORKDIR /app
-COPY ./frontend/package.json ./frontend/bun.lock /app/frontend/
-WORKDIR /app/frontend
+COPY ./package.json ./bun.lock /app/
 RUN bun install --frozen-lockfile
 
 FROM oven/bun:1 AS build
 
 WORKDIR /app
-COPY --from=deps /app/frontend/node_modules /app/frontend/node_modules
-COPY ./frontend /app/frontend
-WORKDIR /app/frontend
+COPY --from=deps /app/node_modules /app/node_modules
+COPY . /app
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN bun run build
 
 FROM oven/bun:1 AS runner
 
-WORKDIR /app/frontend
+WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-COPY --from=build /app/frontend/.next /app/frontend/.next
-COPY --from=build /app/frontend/public /app/frontend/public
-COPY --from=build /app/frontend/package.json /app/frontend/package.json
-COPY --from=build /app/frontend/next.config.ts /app/frontend/next.config.ts
-COPY --from=build /app/frontend/node_modules /app/frontend/node_modules
+COPY --from=build /app/.next /app/.next
+COPY --from=build /app/public /app/public
+COPY --from=build /app/package.json /app/package.json
+COPY --from=build /app/next.config.ts /app/next.config.ts
+COPY --from=build /app/node_modules /app/node_modules
 
 EXPOSE 3000
 CMD ["bun", "run", "start", "--", "-H", "0.0.0.0", "-p", "3000"]

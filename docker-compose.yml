@@ -1,5 +1,5 @@
 services:
-  frontend:
+  bio:
     build:
       context: .
       dockerfile: ./Dockerfile

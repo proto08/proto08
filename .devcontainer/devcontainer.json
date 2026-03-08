@@ -1,8 +1,8 @@
 {
-  "name": "frontend",
+  "name": "bio",
   "dockerComposeFile": ["../docker-compose.devcontainer.yml"],
-  "service": "frontend",
-  "workspaceFolder": "/repo/frontend",
+  "service": "bio",
+  "workspaceFolder": "/repo",
   "customizations": {
     "vscode": {
       "extensions": [
