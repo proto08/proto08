@@ -1,13 +1,4 @@
 services:
-  backend:
-    build:
-      context: .
-      dockerfile: ./docker/backend/Dockerfile.devcontainer
-    volumes:
-      - ./:/repo
-    ports:
-      - "8000:8000"
-    tty: true
   frontend:
     build:
       context: .
@@ -15,6 +6,5 @@ services:
     volumes:
       - ./:/repo
     ports:
-      - "3000:3000"
+      - '3000:3000'
     tty: true
-  
