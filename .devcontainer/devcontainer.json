@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "dockerComposeFile": ["../../docker-compose.devcontainer.yml"],
+  "dockerComposeFile": ["../docker-compose.devcontainer.yml"],
   "service": "frontend",
   "workspaceFolder": "/repo/frontend",
   "customizations": {
