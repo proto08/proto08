@@ -3,6 +3,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrettyCode from 'rehype-pretty-code'
+import rehypeSanitize from 'rehype-sanitize'
 import { PreWithCopy } from './pre-with-copy'
 
 interface ArticleProseProps {
@@ -16,6 +17,7 @@ export async function ArticleProse({ content }: ArticleProseProps) {
       mdxOptions: {
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
+          rehypeSanitize,
           rehypeSlug,
           [rehypeAutolinkHeadings, { behavior: 'wrap' }],
           [
