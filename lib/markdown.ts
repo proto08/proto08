@@ -1,63 +1,41 @@
-import { unified } from 'unified'
-import remarkParse from 'remark-parse'
-import remarkGfm from 'remark-gfm'
-import remarkRehype from 'remark-rehype'
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypePrettyCode from 'rehype-pretty-code'
-import rehypeStringify from 'rehype-stringify'
 import type { TocItem } from '@/types/article'
 
-function getTextContent(node: any): string {
-  if (node.type === 'text') return node.value as string
-  if (node.children)
-    return (node.children as any[]).map(getTextContent).join('')
-  return ''
+// Matches rehype-slug's ID generation (github-slugger compatible)
+function toSlugId(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/-+/g, '-')
+    .trim()
 }
 
-function rehypeExtractToc(toc: TocItem[]) {
-  return () => (tree: any) => {
-    function walk(node: any) {
-      if (
-        node.type === 'element' &&
-        (node.tagName === 'h2' || node.tagName === 'h3')
-      ) {
-        const depth = (node.tagName === 'h2' ? 2 : 3) as 2 | 3
-        const id = node.properties?.id as string | undefined
-        if (id) {
-          const text = getTextContent(node)
-          toc.push({ id, text, depth })
-        }
-      }
-      if (node.children) {
-        ;(node.children as any[]).forEach(walk)
-      }
-    }
-    walk(tree)
-  }
-}
-
-export async function renderMarkdown(
-  raw: string
-): Promise<{ html: string; toc: TocItem[] }> {
+export function extractToc(markdown: string): TocItem[] {
   const toc: TocItem[] = []
+  const seen = new Map<string, number>()
+  let inCodeBlock = false
 
-  const file = await unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(remarkRehype)
-    .use(rehypeSlug)
-    .use(rehypeExtractToc(toc))
-    .use(rehypeAutolinkHeadings, { behavior: 'wrap' })
-    .use(rehypePrettyCode, {
-      theme: {
-        dark: 'github-dark',
-        light: 'github-light',
-      },
-      keepBackground: false,
-    })
-    .use(rehypeStringify)
-    .process(raw)
+  for (const line of markdown.split('\n')) {
+    if (line.startsWith('```')) {
+      inCodeBlock = !inCodeBlock
+      continue
+    }
+    if (inCodeBlock) continue
 
-  return { html: String(file), toc }
+    const match = line.match(/^(#{2,3})\s+(.+)/)
+    if (match) {
+      const depth = match[1].length as 2 | 3
+      const text = match[2].trim()
+      const base = toSlugId(text) || `heading-${toc.length}`
+
+      // Deduplicate like github-slugger: append -1, -2, ...
+      const count = seen.get(base) ?? 0
+      const id = count === 0 ? base : `${base}-${count}`
+      seen.set(base, count + 1)
+
+      toc.push({ id, text, depth })
+    }
+  }
+
+  return toc
 }

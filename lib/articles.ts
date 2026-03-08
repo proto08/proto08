@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
-import { renderMarkdown } from '@/lib/markdown'
+import { extractToc } from '@/lib/markdown'
 import type { Article, ArticleMeta } from '@/types/article'
 
 const articlesDir = path.join(process.cwd(), 'content/articles')
@@ -71,8 +71,6 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   const { data, content } = matter(raw)
   if (!data.published) return null
 
-  const { html, toc } = await renderMarkdown(content)
-
   return {
     title: data.title as string,
     slug: data.slug as string,
@@ -82,7 +80,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     tags: data.tags as string[] | undefined,
     published: data.published as boolean,
     readingTime: readingTime(content).text,
-    content: html,
-    toc,
+    content, // raw markdown — rendered by ArticleProse via react-markdown
+    toc: extractToc(content),
   }
 }
