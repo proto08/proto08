@@ -16,7 +16,7 @@ jobs:
             **/*.{ts,tsx,js,jsx,json}
       - uses: oven-sh/setup-bun@v2
       - name: Install dependencies
-        run: cd frontend && bun install --frozen-lockfile
+        run: bun install --frozen-lockfile
       - name: Run Prettier Format
         run: bunx prettier --write ${{ env.GIT_DIFF_FILTERED }}
         if: env.GIT_DIFF
