@@ -15,7 +15,7 @@ export function ArticleList({ articles }: ArticleListProps) {
   }
 
   return (
-    <div className="flex flex-col divide-y divide-border">
+    <div className="flex flex-col">
       {articles.map((article) => (
         <ArticleCard key={article.slug} article={article} />
       ))}
