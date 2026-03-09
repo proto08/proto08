@@ -51,7 +51,7 @@ function NavLink({
         'px-3 py-1 text-sm font-medium rounded-full transition-all duration-150',
         active
           ? 'bg-foreground text-background'
-          : 'text-muted-foreground hover:text-foreground hover:bg-accent/60',
+          : 'text-muted-foreground hover:text-foreground hover:bg-accent/60'
       )}
     >
       {children}
