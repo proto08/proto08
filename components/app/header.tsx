@@ -11,15 +11,6 @@ export default function Header() {
   return (
     <header className="fixed top-5 left-1/2 -translate-x-1/2 z-50">
       <nav className="flex items-center gap-0.5 bg-background/75 backdrop-blur-md border border-border/50 rounded-full px-2 py-1.5 shadow-sm shadow-black/10 dark:shadow-black/30">
-        <Link
-          href="/"
-          className="px-3 py-1 text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors rounded-full select-none"
-        >
-          proto
-        </Link>
-
-        <div className="w-px h-3.5 bg-border/70 mx-1" />
-
         <NavLink href="/" active={pathname === '/'}>
           Home
         </NavLink>
