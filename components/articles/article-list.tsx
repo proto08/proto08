@@ -1,5 +1,5 @@
-import { ArticleCard } from './article-card'
 import type { ArticleMeta } from '@/types/article'
+import { ArticleCard } from './article-card'
 
 interface ArticleListProps {
   articles: ArticleMeta[]

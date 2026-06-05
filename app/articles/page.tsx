@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
+import { ArticleList } from '@/components/articles/article-list'
+import { CategoryFilter } from '@/components/articles/category-filter'
 import {
   getAllArticles,
   getAllCategories,
   getArticlesByCategory,
 } from '@/lib/articles'
-import { ArticleList } from '@/components/articles/article-list'
-import { CategoryFilter } from '@/components/articles/category-filter'
 
 export const metadata: Metadata = {
   title: 'Articles',
@@ -25,14 +25,18 @@ export default async function ArticlesPage({ searchParams }: Props) {
   ])
 
   // Validate category parameter
-  const validCategory = category && categories.includes(category) ? category : undefined
+  const validCategory =
+    category && categories.includes(category) ? category : undefined
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-20">
       <h1 className="mb-2 text-4xl font-bold">Articles</h1>
       <p className="mb-8 text-muted-foreground">{articles.length}件の記事</p>
       <div className="mb-8">
-        <CategoryFilter categories={categories} activeCategory={validCategory} />
+        <CategoryFilter
+          categories={categories}
+          activeCategory={validCategory}
+        />
       </div>
       <ArticleList articles={articles} />
     </main>
