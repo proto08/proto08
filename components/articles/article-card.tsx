@@ -16,7 +16,9 @@ export function ArticleCard({ article }: ArticleCardProps) {
       className="group -mx-4 block rounded-lg px-4 py-5 transition-colors hover:bg-muted/40"
     >
       <div className="mb-1.5 flex items-center justify-between">
-        <span className="text-xs text-muted-foreground">{article.category}</span>
+        <span className="text-xs text-muted-foreground">
+          {article.category}
+        </span>
         <time className="text-xs text-muted-foreground">{formattedDate}</time>
       </div>
       <h2 className="mb-1 text-lg font-semibold transition-colors group-hover:text-primary">

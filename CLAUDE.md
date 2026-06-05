@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 bun dev        # Start dev server with Turbopack
 bun build      # Production build
-bun lint       # ESLint via Next.js
+bun lint       # Biome check (lint + format)
 ```
 
 No test suite is configured.
@@ -31,7 +31,7 @@ Personal bio/portfolio site built with Next.js (App Router), React 19, Tailwind 
 
 ## Code Style
 
-Prettier is configured (enforced via CI on push):
+Biome is configured for both formatting and linting (enforced via CI on push):
 
 - No semicolons, single quotes, 2-space indent, trailing commas (ES5)
 
