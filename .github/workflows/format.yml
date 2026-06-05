@@ -1,7 +1,7 @@
 name: Lint and Format
 on: [pull_request]
 jobs:
-  prettier:
+  biome:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -17,9 +17,9 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - name: Install dependencies
         run: bun install --frozen-lockfile
-      - name: Run Prettier Format
-        run: bunx prettier --write ${{ env.GIT_DIFF_FILTERED }}
+      - name: Run Biome Check
+        run: bunx biome check --write ${{ env.GIT_DIFF_FILTERED }}
         if: env.GIT_DIFF
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'fix: apply prettier changes'
+          commit_message: 'fix: apply biome changes'

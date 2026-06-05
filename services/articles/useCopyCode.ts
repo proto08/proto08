@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 export function useCopyCode(text: string, timeout = 2000) {
   const [copied, setCopied] = useState(false)

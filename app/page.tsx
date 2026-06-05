@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion'
 import { ChevronUp, Github, Rss, Send } from 'lucide-react'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { scrollToSection } from '@/components/app/header'
+import { Button } from '@/components/ui/button'
 
 const CARDS = [
   {

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getAllArticles, getArticleBySlug } from '@/lib/articles'
-import { TableOfContents } from '@/components/articles/table-of-contents'
 import { ArticleProse } from '@/components/articles/article-prose'
+import { TableOfContents } from '@/components/articles/table-of-contents'
 import { Badge } from '@/components/ui/badge'
+import { getAllArticles, getArticleBySlug } from '@/lib/articles'
 
 interface Props {
   params: Promise<{ slug: string }>
