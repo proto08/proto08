@@ -5,19 +5,19 @@
   "workspaceFolder": "/repo",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "oven.bun-vscode"
-      ],
+      "extensions": ["biomejs.biome", "oven.bun-vscode"],
       "settings": {
         "[typescriptreact]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.defaultFormatter": "biomejs.biome",
           "editor.formatOnSave": true
         },
         "[typescript]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.defaultFormatter": "biomejs.biome",
           "editor.formatOnSave": true
+        },
+        "editor.codeActionsOnSave": {
+          "quickfix.biome": "explicit",
+          "source.organizeImports.biome": "explicit"
         }
       }
     }
