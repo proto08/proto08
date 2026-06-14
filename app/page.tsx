@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChevronUp, Github, Rss, Send } from 'lucide-react'
+import { ChevronUp, Github, Rss, Twitter } from 'lucide-react'
 import Link from 'next/link'
 import { scrollToSection } from '@/components/app/header'
 import { Button } from '@/components/ui/button'
@@ -12,8 +12,8 @@ const CARDS = [
     link: 'https://github.com/proto08',
   },
   {
-    icon: <Send />,
-    link: 'https://t.me/traderjwjajs',
+    icon: <Twitter />,
+    link: 'https://x.com/yuyud1dej',
   },
   {
     icon: <Rss />,
