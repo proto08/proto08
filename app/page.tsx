@@ -34,7 +34,7 @@ export default function Page() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-6xl mb-12">
-            Hello, I&apos;m Proto 👋
+            Hello, I&apos;m Yuki 👋
           </h2>
 
           <div className="flex flex-row gap-8 mx-auto justify-center mb-24">
