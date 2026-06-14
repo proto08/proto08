@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChevronUp, Github, Rss, Send } from 'lucide-react'
+import { ChevronUp, Github, Rss, Twitter } from 'lucide-react'
 import Link from 'next/link'
 import { scrollToSection } from '@/components/app/header'
 import { Button } from '@/components/ui/button'
@@ -12,8 +12,8 @@ const CARDS = [
     link: 'https://github.com/proto08',
   },
   {
-    icon: <Send />,
-    link: 'https://t.me/traderjwjajs',
+    icon: <Twitter />,
+    link: 'https://x.com/yuyud1dej',
   },
   {
     icon: <Rss />,
@@ -34,7 +34,7 @@ export default function Page() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-6xl mb-12">
-            Hello, I&apos;m Proto 👋
+            Hello, I&apos;m Yuki 👋
           </h2>
 
           <div className="flex flex-row gap-8 mx-auto justify-center mb-24">
