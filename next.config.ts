@@ -1,7 +1,6 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  eslint: { ignoreDuringBuilds: true },
   reactCompiler: true,
   poweredByHeader: false,
   headers: async () => [
