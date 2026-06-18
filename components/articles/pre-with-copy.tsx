@@ -15,9 +15,11 @@ export function PreWithCopy({
   }, [])
 
   return (
-    <pre ref={preRef} {...props}>
-      {children}
+    <div className="code-block-wrapper">
+      <pre ref={preRef} {...props}>
+        {children}
+      </pre>
       <CopyButton text={codeText} />
-    </pre>
+    </div>
   )
 }
