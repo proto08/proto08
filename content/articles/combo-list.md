@@ -1,4 +1,5 @@
 ---
+
 title: 'Combo Listとは'
 slug: combo-list
 description: '流出した個人情報の入手方法を解説'

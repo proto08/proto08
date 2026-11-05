@@ -1,4 +1,5 @@
 ---
+
 title: 'Discord の Web 認証を作る | Next.js'
 slug: discord-web-auth-nextjs
 description: 'Discord OAuth2とCloudflare TurnstileによるWebサーバー認証の実装'
@@ -210,7 +211,7 @@ Javascript から cookie にアクセスできないようにします。
 例:
 
 ```js
-alert(document.cookie);
+alert(document.cookie)
 ```
 
 ### sameSite
@@ -219,48 +220,48 @@ alert(document.cookie);
 同一サイトからのリクエストのみ Cookie を送信します。
 
 | リクエスト元 | リクエスト先 | GET | POST | リンク |
-| --- | --- | --- | --- | --- |
-| origin.com | target.com | ❌ | ❌ | ❌ |
+| ------------ | ------------ | --- | ---- | ------ |
+| origin.com   | target.com   | ❌  | ❌   | ❌     |
 
 **lax**
 外部サイトからの POST 以外で Cookie を送信します。
 
 | リクエスト元 | リクエスト先 | GET | POST | リンク |
-| --- | --- | --- | --- | --- |
-| origin.com | target.com | ✅ | ❌ | ✅ |
+| ------------ | ------------ | --- | ---- | ------ |
+| origin.com   | target.com   | ✅  | ❌   | ✅     |
 
 **none**（非推奨）
 すべてのリクエストで Cookie を送信します。
 
 | リクエスト元 | リクエスト先 | GET | POST | リンク |
-| --- | --- | --- | --- | --- |
-| origin.com | target.com | ✅ | ✅ | ✅ |
+| ------------ | ------------ | --- | ---- | ------ |
+| origin.com   | target.com   | ✅  | ✅   | ✅     |
 
 ## callback 処理
 
 ```ts
 export async function GET(req: NextRequest) {
-  const res = new NextResponse();
+  const res = new NextResponse()
   try {
-    const session = await getIronSession<SessionData>(req, res, sessionOptions);
-    const code = new URL(req.url).searchParams.get("code");
+    const session = await getIronSession<SessionData>(req, res, sessionOptions)
+    const code = new URL(req.url).searchParams.get('code')
 
     if (!code) {
-      throw new Error("No code provided");
+      throw new Error('No code provided')
     }
 
-    const csrfToken = crypto.randomBytes(32).toString("hex");
+    const csrfToken = crypto.randomBytes(32).toString('hex')
 
-    session.code = code;
-    session.csrfToken = csrfToken;
-    await session.save();
+    session.code = code
+    session.csrfToken = csrfToken
+    await session.save()
 
     return NextResponse.redirect(new URL('/verify', process.env.BASE_URL), {
       headers: res.headers,
     })
   } catch (error) {
-    console.log("Error in api/callback:", error);
-    return NextResponse.redirect(new URL("/error", process.env.BASE_URL));
+    console.log('Error in api/callback:', error)
+    return NextResponse.redirect(new URL('/error', process.env.BASE_URL))
   }
 }
 ```
@@ -286,7 +287,7 @@ interface UseCsrfToken {
 }
 
 export function useCsrfToken(): UseCsrfToken {
-  const fetcher = (url: string) => fetch(url).then(res => res.json())
+  const fetcher = (url: string) => fetch(url).then((res) => res.json())
   const { data, isLoading, error } = useSWR<CsrfResponse>('/api/csrf', fetcher)
   return { data, isLoading, error }
 }
@@ -616,7 +617,9 @@ export default function Page() {
     <main className="flex min-h-screen items-center justify-center">
       <div className="p-10 rounded-4xl md:w-1/2 max-w-md border border-white/[0.10]">
         <div className="mx-auto">
-          <h1 className="text-xl font-bold mb-4 text-center">認証が完了しました</h1>
+          <h1 className="text-xl font-bold mb-4 text-center">
+            認証が完了しました
+          </h1>
           <p className="text-center text-muted-foreground mb-6">
             認証が正常に完了しました。このページは閉じて構いません。
           </p>
@@ -634,7 +637,9 @@ export default function Page() {
     <main className="flex min-h-screen items-center justify-center">
       <div className="p-10 rounded-4xl md:w-1/2 max-w-md border border-white/[0.10]">
         <div className="mx-auto">
-          <h1 className="text-xl font-bold mb-4 text-center">エラーが発生しました</h1>
+          <h1 className="text-xl font-bold mb-4 text-center">
+            エラーが発生しました
+          </h1>
           <p className="text-center text-muted-foreground mb-6">
             認証処理中にエラーが発生しました。もう一度お試しください。
           </p>
