@@ -1,9 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChevronUp, Github, Rss, Twitter } from 'lucide-react'
+import { ChevronUp, Rss } from 'lucide-react'
 import Link from 'next/link'
 import { scrollToSection } from '@/components/app/header'
+import { Github } from '@/components/icons/github'
+import { Twitter } from '@/components/icons/twitter'
 import { Button } from '@/components/ui/button'
 
 const CARDS = [
