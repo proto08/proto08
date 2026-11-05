@@ -1,4 +1,5 @@
 ---
+
 title: 'VPNを検知する | Next.js'
 slug: vpn-detect-nextjs
 description: 'ノーコストでVPN/Proxyを検知するNext.js APIの実装'
@@ -54,21 +55,21 @@ https://github.com/NullifiedCode/ASN-Lists
 ```ts
 export async function getASN(ip: string): Promise<number | null> {
   try {
-    const response = await fetch(`https://ipinfo.io/${ip}/json`);
+    const response = await fetch(`https://ipinfo.io/${ip}/json`)
     if (!response.ok) {
-      console.error("Failed to fetch ASN");
-      return null;
+      console.error('Failed to fetch ASN')
+      return null
     }
-    const data = await response.json();
-    const match = data.org?.match(/AS(\d+)/);
+    const data = await response.json()
+    const match = data.org?.match(/AS(\d+)/)
     if (match && match[1]) {
-      return parseInt(match[1], 10);
+      return parseInt(match[1], 10)
     }
-    console.error("No ASN found");
-    return null;
+    console.error('No ASN found')
+    return null
   } catch (error) {
-    console.error(error);
-    return null;
+    console.error(error)
+    return null
   }
 }
 ```
@@ -97,12 +98,12 @@ IP アドレスを`1.1.1.1`とした場合の`response.json()`のサンプルは
 ## VPN かどうかを判断する
 
 ```ts
-import asnList from "@/lib/asn.json";
+import asnList from '@/lib/asn.json'
 
 export async function isVpn(ip: string): Promise<boolean> {
-  const asn = await getASN(ip);
-  if (!asn) return false;
-  return asnList.includes(asn);
+  const asn = await getASN(ip)
+  if (!asn) return false
+  return asnList.includes(asn)
 }
 ```
 
@@ -113,13 +114,13 @@ export async function isVpn(ip: string): Promise<boolean> {
 ```ts
 export function isValidIPv4(ip: string): boolean {
   const IPV4_REGEX =
-    /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-  if (!IPV4_REGEX.test(ip)) return false;
+    /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+  if (!IPV4_REGEX.test(ip)) return false
 
-  const octets = ip.split(".");
+  const octets = ip.split('.')
   return octets.every((octet) => {
-    return octet === "0" || !octet.startsWith("0");
-  });
+    return octet === '0' || !octet.startsWith('0')
+  })
 }
 ```
 
@@ -129,27 +130,30 @@ IPv4 アドレスに対応しています。
 ## API の作成
 
 ```ts
-import { NextResponse } from "next/server";
-import { isVpn } from "@/lib/isVpn";
-import { isValidIPv4 } from "@/lib/ipValidate";
+import { NextResponse } from 'next/server'
+import { isVpn } from '@/lib/isVpn'
+import { isValidIPv4 } from '@/lib/ipValidate'
 
-export async function GET(request: Request, { params }: { params: Promise<{ ip: string }> }) {
-  const { ip } = await params;
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ ip: string }> }
+) {
+  const { ip } = await params
   if (!isValidIPv4(ip)) {
-    return NextResponse.json({ error: "invalid ip address" }, { status: 400 });
+    return NextResponse.json({ error: 'invalid ip address' }, { status: 400 })
   }
-  const vpnCheck = await isVpn(ip);
+  const vpnCheck = await isVpn(ip)
   if (!vpnCheck) {
     return NextResponse.json({
       ip,
       isVpn: false,
-    });
+    })
   }
 
   return NextResponse.json({
     ip,
     isVpn: true,
-  });
+  })
 }
 ```
 
@@ -161,7 +165,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ ip: 
 VPN で使用されているイスラエルの IP アドレスでテストします。
 
 ```json
-{"ip":"169.150.227.226","isVpn":true}
+{ "ip": "169.150.227.226", "isVpn": true }
 ```
 
 無事判定されました。
