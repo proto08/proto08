@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChevronUp, Github, Rss, Send } from 'lucide-react'
+import { ChevronUp, Rss, Send } from 'lucide-react'
+import { Github } from '@/components/icons/github'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { scrollToSection } from '@/components/app/header'
