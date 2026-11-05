@@ -6,5 +6,5 @@ services:
     volumes:
       - ./:/repo
     ports:
-      - '3000:3000'
+      - "3000:3000"
     tty: true
