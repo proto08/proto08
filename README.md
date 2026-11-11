@@ -1,18 +1,28 @@
+# shadcn/ui monorepo template
+
+A TanStack Start + shadcn/ui monorepo. `apps/web` is prerendered to fully static HTML (`apps/web/dist/client`) and needs no server at runtime.
+
+```bash
+bun run dev    # dev server on http://localhost:3000
+bun run build  # static output in apps/web/dist/client
 ```
-I'm proto from Japan.
-I Love Web development.
 
---------------------
-Contact With Me
+Articles live in `apps/web/content/articles/*.md` and are compiled at build time by `apps/web/vite/articles.ts`.
 
-- Telegram          - test
-- Session           - 05981309be60c069f83d14960b19319f0fc901b4db078ec8108132771fb34bf34c
+## Adding components
 
---------------------
-Skills & Tools
+To add components to your app, run the following command at the root of your `web` app:
 
-* Backend:          Python, FastAPI, Next.js
-* Frontend:         React, Next.js, Typescript, TailWindCSS
-* Databases         MySQL, Supabase, Prisma, sqlalchemy
-* DevOps:           Git, Docker/DevContainer
+```bash
+bunx shadcn@latest add button -c apps/web
+```
+
+This will place the ui components in the `packages/ui/src/components` directory.
+
+## Using components
+
+To use the components in your app, import them from the `ui` package.
+
+```tsx
+import { Button } from "@workspace/ui/components/button";
 ```
